@@ -1,0 +1,67 @@
+<div class="card w-100">
+  <div class="card-title p-3 pb-0 text-center text-bold">
+    Transaction
+  </div>
+  <div class="card-body">
+    <div class="container transaction-form right-align">
+      <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="category">
+            @for (option of categories; track option) {
+            <mat-option [value]="option">{{option}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>DateTime</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dateTime">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Amount</mat-label>
+          <input matInput type="number" formControlName="amount">
+          <span matTextPrefix>{{getCurrencyPrefix}}&nbsp;</span>
+          <span matTextSuffix>.00</span>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Currency Type</mat-label>
+          <mat-select formControlName="currency">
+            <mat-option value="LKR">LKR</mat-option>
+            <mat-option value="USD">USD</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Description</mat-label>
+          <input matInput type="text" formControlName="description">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Source</mat-label>
+          <mat-select formControlName="source">
+            @for (source of sources; track source) {
+            <mat-option [value]="source">
+              {{source}}
+            </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Transaction Type</mat-label>
+          <mat-select formControlName="transactionType">
+            <mat-option value="Spending">Spending</mat-option>
+            <mat-option value="Lending">Lending</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <!-- [disabled]="!transactionForm.valid" -->
+        <button mat-raised-button class="w-100" color="primary" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
