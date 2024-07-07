@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, signal } from '@angular/core';
+import { Component, Input, OnInit, input, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -20,8 +20,8 @@ import { TransactionService } from '../../services/transaction.service';
   styleUrl: './spending-history.component.css',
 })
 export class SpendingHistoryComponent implements OnInit {
-  @Input() filterOption!: string;
-
+  // @Input() filterOption!: string;
+  filterOption = input()
   displayedColumns: string[] = [
     'category',
     'dateTime',
